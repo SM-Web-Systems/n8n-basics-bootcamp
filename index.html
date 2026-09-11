@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>n8n Basics Bootcamp — Complete Course</title>
+  <!-- Favicon: inline SVG data URI matching the nav logo (indigo→cyan gradient + course emoji) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='32' y2='32' gradientUnits='userSpaceOnUse'><stop offset='0' stop-color='%236366f1'/><stop offset='1' stop-color='%2306b6d4'/></linearGradient></defs><rect width='32' height='32' rx='7' fill='url(%23g)'/><text x='16' y='17' font-size='17' text-anchor='middle' dominant-baseline='central'>🤖</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="manifest" href="manifest.json">
+  <style>
+    .asset-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px; margin-top: 32px;
+    }
+    .asset-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px; text-align: center;
+    }
+    .asset-card .icon { font-size: 2rem; margin-bottom: 10px; }
+    .asset-card .name { font-size: 0.9rem; font-weight: 600; margin-bottom: 4px; }
+    .asset-card .count { font-size: 0.8rem; color: var(--text2); }
+    .how-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; margin-top: 24px; }
+    .how-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+    .how-card .step { font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 8px; }
+    .how-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .how-card p { font-size: 0.875rem; color: var(--text2); line-height: 1.5; }
+    .module-card { text-decoration: none; display: block; }
+    .module-icon { font-size: 2rem; margin-bottom: 12px; }
+    .module-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+    .duration-badge {
+      font-size: 0.75rem; color: var(--text3);
+      background: var(--bg3); border-radius: 99px; padding: 2px 10px;
+    }
+    .new-badge {
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 0.05em;
+      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+      color: #fff; border-radius: 99px; padding: 2px 10px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <div class="nav-logo">
+      <div class="logo-icon">🤖</div>
+      Automation Academy
+    </div>
+    <div class="nav-links">
+      <a href="#modules">Modules</a>
+      <a href="#assets">Assets</a>
+      <a href="#about">About</a>
+      <span class="streak-badge" id="streak-badge" style="display:none">🔥 <span id="streak-count">0</span> day streak</span>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">✨ Beginner Course</div>
+    <h1>n8n Basics Bootcamp</h1>
+    <p>Learn workflow automation by building a real webhook-to-alert pipeline</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">4</div><div class="stat-label">Modules</div></div>
+      <div class="stat"><div class="stat-num">4+</div><div class="stat-label">Hours of Content</div></div>
+      <div class="stat"><div class="stat-num">70+</div><div class="stat-label">Flashcards/Module</div></div>
+      <div class="stat"><div class="stat-num">9</div><div class="stat-label">Asset Types</div></div>
+    </div>
+    <div id="resume-card-wrap"></div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="module.html?id=1" class="btn btn-primary" id="start-btn">Start Learning →</a>
+      <a href="#modules" class="btn btn-secondary">Browse Modules</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="modules">
+  <div class="container">
+    <div class="section-title">Course Modules</div>
+    <div class="section-sub">4 modules</div>
+    <div class="modules-grid" id="modules-grid"></div>
+  </div>
+</section>
+
+<section class="section" id="assets" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="section-title">Learning Assets</div>
+    <div class="section-sub">Each module includes all of these formats — choose how you learn best</div>
+    <div class="asset-grid">
+      <div class="asset-card"><div class="icon">📖</div><div class="name">Lesson Text</div><div class="count">4 comprehensive lessons</div></div>
+      <div class="asset-card"><div class="icon">🎙️</div><div class="name">Audio Overview</div><div class="count">4 podcast-style MP3s</div></div>
+      <div class="asset-card"><div class="icon">🎬</div><div class="name">Video Explainer</div><div class="count">4 animated MP4 videos</div></div>
+      <div class="asset-card"><div class="icon">🖼️</div><div class="name">Infographic</div><div class="count">4 detailed PNGs</div></div>
+      <div class="asset-card"><div class="icon">📊</div><div class="name">Slide Deck</div><div class="count">4 PowerPoint files</div></div>
+      <div class="asset-card"><div class="icon">📚</div><div class="name">Study Guide</div><div class="count">4 structured guides</div></div>
+      <div class="asset-card"><div class="icon">✅</div><div class="name">Quiz</div><div class="count">4 questions/module</div></div>
+      <div class="asset-card"><div class="icon">🃏</div><div class="name">Flashcards</div><div class="count">60–75 cards/module</div></div>
+      <div class="asset-card"><div class="icon">🗺️</div><div class="name">Mind Map</div><div class="count">4 interactive maps</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-title">How to Use This Course</div>
+    <div class="section-sub">Recommended learning path for each module</div>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="step">01</div>
+        <h4>Watch or Listen First</h4>
+        <p>Start with the video explainer or audio overview to get a high-level understanding of the topic.</p>
+      </div>
+      <div class="how-card">
+        <div class="step">02</div>
+        <h4>Read the Lesson</h4>
+        <p>Go deep with the full written lesson. Use the study guide for a condensed reference.</p>
+      </div>
+      <div class="how-card">
+        <div class="step">03</div>
+        <h4>Review the Infographic</h4>
+        <p>The visual infographic reinforces key concepts. Download it for offline reference.</p>
+      </div>
+      <div class="how-card">
+        <div class="step">04</div>
+        <h4>Test Yourself</h4>
+        <p>Take the module quiz to check your understanding. Aim for 80%+ before moving on.</p>
+      </div>
+      <div class="how-card">
+        <div class="step">05</div>
+        <h4>Drill with Flashcards</h4>
+        <p>Use the flashcard deck to memorise key terms and concepts. Shuffle for variety.</p>
+      </div>
+      <div class="how-card">
+        <div class="step">06</div>
+        <h4>Explore the Mind Map</h4>
+        <p>Use the interactive mind map to see how concepts connect. Great for revision.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p style="font-weight:700;margin-bottom:8px">Check out these Claude Code Superpowers:</p>
+    <p style="font-size:0.875rem;line-height:1.8">
+      <a href="https://claude-code-mastery.terminalvelocityai.tech">Claude Code Mastery</a> ·
+      <a href="https://claude-code-toolkit.terminalvelocityai.tech">Claude Code Toolkit</a> ·
+      <a href="https://claude-code-teaches.terminalvelocityai.tech">Claude Code Teaches IT Topics</a> ·
+      <a href="https://store.terminalvelocityai.tech/">Brighten — Four Superskills</a>
+    </p>
+    <p style="margin-top:16px">n8n Basics Bootcamp — built with <strong>Claude Code</strong> + <strong>NotebookLM</strong></p>
+    <p style="margin-top:8px">© 2026 <a href="https://terminalvelocityai.tech/">Terminal Velocity AI</a>. All rights reserved.</p>
+    <p style="margin-top:4px;font-size:0.85rem;color:var(--text3)">Built with love and Claude Code</p>
+  </div>
+</footer>
+
+<script src="js/course.js"></script>
+<script>
+  // Warn if opened as file:// (fetch won't work)
+  if (location.protocol === 'file:') {
+    const banner = document.createElement('div');
+    banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#dc2626;color:#fff;text-align:center;padding:10px 16px;font-size:0.875rem;font-weight:600';
+    banner.innerHTML = '⚠️ Open via a local server for content to load correctly — run: <code style="background:rgba(0,0,0,0.3);padding:2px 8px;border-radius:4px">python3 -m http.server 8080</code> then visit <a href="http://localhost:8080" style="color:#fde68a">localhost:8080</a>';
+    document.body.prepend(banner);
+  }
+
+  // Streak badge
+  const streak = getStreak();
+  if (streak > 0) {
+    document.getElementById('streak-badge').style.display = '';
+    document.getElementById('streak-count').textContent = streak;
+  }
+
+  // Resume card — show last visited module
+  const lastVisited = loadProgress('last_visited', null);
+  if (lastVisited) {
+    const lm = MODULES.find(m => m.id === lastVisited);
+    if (lm) {
+      document.getElementById('resume-card-wrap').innerHTML = `
+        <a href="module.html?id=${lm.id}" class="resume-card-link">
+          <div class="resume-card-label">↩ Resume where you left off</div>
+          <div class="resume-card-title">${lm.icon} Module ${lm.id}: ${lm.title}</div>
+          <div class="resume-card-sub">${lm.duration} · ${lm.subtitle}</div>
+        </a>`;
+      document.getElementById('start-btn').textContent = 'Start from Module 1 →';
+    }
+  }
+
+  const grid = document.getElementById('modules-grid');
+  MODULES.forEach(m => {
+    grid.innerHTML += `
+      <a href="module.html?id=${m.id}" class="module-card">
+        <div class="module-num">Module ${m.id}${m.badge ? ` <span class="new-badge">${m.badge}</span>` : ''}</div>
+        <div class="module-meta">
+          <span class="module-icon">${m.icon}</span>
+          <span class="duration-badge">⏱ ${m.duration}</span>
+        </div>
+        <h3>${m.title}</h3>
+        <p>${m.description}</p>
+        <div class="module-assets">
+          <span class="asset-tag has">🎙️ Audio</span>
+          <span class="asset-tag has">🎬 Video</span>
+          <span class="asset-tag has">🖼️ Visual</span>
+          <span class="asset-tag has">✅ Quiz</span>
+          <span class="asset-tag has">🃏 Cards</span>
+          <span class="asset-tag has">🗺️ Map</span>
+        </div>
+      </a>`;
+  });
+</script>
+</body>
+</html>

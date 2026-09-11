@@ -1,0 +1,166 @@
+{
+  "name": "n8n Exercises and Quiz",
+  "children": [
+    {
+      "name": "Hands-on Exercises",
+      "children": [
+        {
+          "name": "Add a field",
+          "children": [
+            {
+              "name": "Normalize Data node"
+            },
+            {
+              "name": "Field: source"
+            },
+            {
+              "name": "Value: demo"
+            }
+          ]
+        },
+        {
+          "name": "Add a second branch",
+          "children": [
+            {
+              "name": "IF node multiple outputs"
+            },
+            {
+              "name": "Priority paths: high, normal, other"
+            },
+            {
+              "name": "Distinct NoOp nodes"
+            }
+          ]
+        },
+        {
+          "name": "Scheduled variant",
+          "children": [
+            {
+              "name": "Schedule/Cron trigger"
+            },
+            {
+              "name": "Set node for test data"
+            },
+            {
+              "name": "Downstream logic remains same"
+            }
+          ]
+        },
+        {
+          "name": "Error handling",
+          "children": [
+            {
+              "name": "Error Trigger workflow"
+            },
+            {
+              "name": "Log errors with NoOp"
+            },
+            {
+              "name": "Force failure via expressions"
+            }
+          ]
+        },
+        {
+          "name": "Real actions",
+          "children": [
+            {
+              "name": "Replace simulation"
+            },
+            {
+              "name": "Slack or Email nodes"
+            },
+            {
+              "name": "SMTP/Webhook credentials"
+            }
+          ]
+        },
+        {
+          "name": "Validation",
+          "children": [
+            {
+              "name": "Check message presence"
+            },
+            {
+              "name": "Route invalid to NoOp"
+            },
+            {
+              "name": "Rejected - Missing Message"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Core n8n Concepts",
+      "children": [
+        {
+          "name": "Webhooks",
+          "children": [
+            {
+              "name": "Test: Manual/Single fire"
+            },
+            {
+              "name": "Production: Active/Continuous"
+            }
+          ]
+        },
+        {
+          "name": "Items",
+          "children": [
+            {
+              "name": "Single JSON object unit"
+            },
+            {
+              "name": "Nodes process item lists"
+            },
+            {
+              "name": "Automatic looping logic"
+            }
+          ]
+        },
+        {
+          "name": "Nodes",
+          "children": [
+            {
+              "name": "Trigger: Starts execution"
+            },
+            {
+              "name": "Action: Transforms/API calls"
+            },
+            {
+              "name": "Active status requirement"
+            }
+          ]
+        },
+        {
+          "name": "Data and Debugging",
+          "children": [
+            {
+              "name": "Executions tab for history"
+            },
+            {
+              "name": "Inspect input/output data"
+            },
+            {
+              "name": "Expression syntax: {{ $json.field }}"
+            }
+          ]
+        },
+        {
+          "name": "Credentials",
+          "children": [
+            {
+              "name": "Stored separately from nodes"
+            },
+            {
+              "name": "Reusability across workflows"
+            },
+            {
+              "name": "Security/No plaintext secrets"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

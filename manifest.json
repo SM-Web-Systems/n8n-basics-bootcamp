@@ -1,0 +1,19 @@
+{
+  "name": "Automation Academy",
+  "short_name": "n8n Basics",
+  "description": "A hands-on introduction to n8n: core concepts, a self-hosted Docker setup, a working webhook-to-alert workflow, and exercises to practice with.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0a0e1a",
+  "theme_color": "#4f46e5",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='32' y2='32' gradientUnits='userSpaceOnUse'><stop offset='0' stop-color='%236366f1'/><stop offset='1' stop-color='%2306b6d4'/></linearGradient></defs><rect width='32' height='32' rx='7' fill='url(%23g)'/><text x='16' y='18' font-size='18' text-anchor='middle' dominant-baseline='central'>🤖</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["education"],
+  "lang": "en"
+}
