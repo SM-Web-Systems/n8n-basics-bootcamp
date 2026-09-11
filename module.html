@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module — Automation Academy</title>
+  <!-- Favicon: inline SVG data URI matching the nav logo (indigo→cyan gradient + course emoji) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='32' y2='32' gradientUnits='userSpaceOnUse'><stop offset='0' stop-color='%236366f1'/><stop offset='1' stop-color='%2306b6d4'/></linearGradient></defs><rect width='32' height='32' rx='7' fill='url(%23g)'/><text x='16' y='17' font-size='17' text-anchor='middle' dominant-baseline='central'>🤖</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="manifest" href="manifest.json">
+  <!-- PPTX_ASSETS_START -->
+  <!-- PPTXjs: client-side .pptx renderer (vendored locally for offline PWA support) -->
+  <link rel="stylesheet" href="js/vendor/pptxjs/pptxjs.css">
+  <style>
+    /* In-browser slide viewer */
+    #slides-viewer-wrap { margin-top: 28px; }
+    #slides-view-toggle { margin-left: 12px; }
+    #slides-viewer {
+      max-width: 960px; margin: 0 auto; padding: 8px;
+      background: var(--bg2, #111); border-radius: 12px; overflow-x: auto;
+    }
+    #slides-viewer .slide { margin: 0 auto 18px; box-shadow: 0 4px 18px rgba(0,0,0,.35); }
+    #slides-viewer-status { color: var(--text3); margin-top: 12px; font-size: .9rem; }
+  </style>
+  <!-- PPTX_ASSETS_END -->
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo" style="text-decoration:none">
+      <div class="logo-icon">🤖</div>
+      Automation Academy
+    </a>
+    <div class="nav-links">
+      <a href="index.html">← All Modules</a>
+    </div>
+  </div>
+</nav>
+
+<div class="module-header">
+  <div class="container">
+    <div class="module-breadcrumb">
+      <a href="index.html">Automation Academy</a> / <span id="breadcrumb-title">Loading...</span>
+    </div>
+    <h1 id="module-title">Loading...</h1>
+    <p id="module-subtitle" style="color:var(--text2)"></p>
+    <div class="prereq-banner" id="prereq-banner"></div>
+  </div>
+</div>
+
+<div class="tabs-wrapper">
+  <div class="container">
+    <div class="tabs">
+      <button class="tab active" data-tab="lesson"><span class="tab-icon">📖</span> Lesson</button>
+      <button class="tab" data-tab="video"><span class="tab-icon">🎬</span> Video</button>
+      <button class="tab" data-tab="audio"><span class="tab-icon">🎙️</span> Audio</button>
+      <button class="tab" data-tab="infographic"><span class="tab-icon">🖼️</span> Infographic</button>
+      <button class="tab" data-tab="quiz"><span class="tab-icon">✅</span> Quiz</button>
+      <button class="tab" data-tab="flashcards"><span class="tab-icon">🃏</span> Flashcards</button>
+      <button class="tab" data-tab="mindmap"><span class="tab-icon">🗺️</span> Mind Map</button>
+      <button class="tab" data-tab="slides"><span class="tab-icon">📊</span> Slides</button>
+      <button class="tab" data-tab="notes"><span class="tab-icon">📝</span> Notes</button>
+      <button class="tab" data-tab="challenge" id="challenge-tab" style="display:none"><span class="tab-icon">⚡</span> Challenge</button>
+    </div>
+  </div>
+</div>
+
+<!-- LESSON -->
+<div id="panel-lesson" class="panel active">
+  <div class="container">
+    <div class="prose" id="lesson-content">
+      <div class="loading"><div class="spinner"></div> Loading lesson...</div>
+    </div>
+  </div>
+</div>
+
+<!-- VIDEO -->
+<div id="panel-video" class="panel">
+  <div class="container">
+    <div class="media-container" id="video-container">
+      <div class="loading"><div class="spinner"></div> Loading video...</div>
+    </div>
+  </div>
+</div>
+
+<!-- AUDIO -->
+<div id="panel-audio" class="panel">
+  <div class="container">
+    <div class="media-container" id="audio-container">
+      <div class="loading"><div class="spinner"></div> Loading audio...</div>
+    </div>
+  </div>
+</div>
+
+<!-- INFOGRAPHIC -->
+<div id="panel-infographic" class="panel">
+  <div class="container">
+    <div class="infographic-viewer" id="infographic-container">
+      <div class="infographic-toolbar">
+        <button class="zoom-btn" id="zoom-in">＋ Zoom In</button>
+        <button class="zoom-btn" id="zoom-out">－ Zoom Out</button>
+        <button class="zoom-btn" id="zoom-reset">↺ Reset</button>
+        <span class="zoom-label" id="zoom-label">100%</span>
+        <a id="infographic-download" class="zoom-btn" download style="margin-left:auto">⬇ Download PNG</a>
+      </div>
+      <div class="infographic-img-wrap">
+        <div class="loading"><div class="spinner"></div> Loading infographic...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div id="panel-quiz" class="panel">
+  <div class="container">
+    <div class="quiz-container" id="quiz-container">
+      <div class="loading"><div class="spinner"></div> Loading quiz...</div>
+    </div>
+  </div>
+</div>
+
+<!-- FLASHCARDS -->
+<div id="panel-flashcards" class="panel">
+  <div class="container">
+    <div class="flashcards-container" id="flashcards-container">
+      <div class="loading"><div class="spinner"></div> Loading flashcards...</div>
+    </div>
+  </div>
+</div>
+
+<!-- MIND MAP -->
+<div id="panel-mindmap" class="panel">
+  <div class="container">
+    <div class="mindmap-container" id="mindmap-container">
+      <div class="mindmap-toolbar">
+        <span style="font-size:0.85rem;color:var(--text2)">🗺️ Interactive Mind Map — scroll to zoom, drag to pan</span>
+      </div>
+      <svg id="mindmap-svg"></svg>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDES -->
+<div id="panel-slides" class="panel">
+  <div class="container">
+    <div class="slides-container" id="slides-container">
+      <div class="slides-icon">📊</div>
+      <h3>PowerPoint Slide Deck</h3>
+      <p>Download the editable slide deck for this module. Open in PowerPoint, Keynote, or Google Slides.</p>
+      <div class="slides-info">
+        <div class="slides-info-item"><strong>Format</strong>.pptx</div>
+        <div class="slides-info-item"><strong>Editable</strong>Yes</div>
+        <div class="slides-info-item"><strong>Generated by</strong>NotebookLM</div>
+      </div>
+      <a id="slides-download" class="btn btn-primary" download>⬇ Download Slide Deck</a>
+      <!-- PPTX_VIEW_BTN_START --><button id="slides-view-toggle" class="btn" style="display:none">👁 View Slides Here</button><!-- PPTX_VIEW_BTN_END -->
+      <p id="slides-unavailable" style="display:none;color:var(--text3);margin-top:16px;font-size:0.875rem">
+        Slide deck not yet available for this module — check back later or visit the NotebookLM notebook directly.
+      </p>
+    </div>
+    <!-- PPTX_VIEWER_START -->
+    <div id="slides-viewer-wrap" style="display:none">
+      <div id="slides-viewer"></div>
+      <p id="slides-viewer-status"></p>
+    </div>
+    <!-- PPTX_VIEWER_END -->
+  </div>
+</div>
+
+<!-- NOTES -->
+<div id="panel-notes" class="panel">
+  <div class="container">
+    <div id="notes-panel-content">
+      <div class="loading"><div class="spinner"></div> Loading...</div>
+    </div>
+  </div>
+</div>
+
+<!-- CHALLENGE -->
+<div id="panel-challenge" class="panel">
+  <div class="container">
+    <div id="challenge-panel-content">
+      <div class="loading"><div class="spinner"></div> Loading...</div>
+    </div>
+  </div>
+</div>
+
+<!-- MODULE NAVIGATION -->
+<div class="container">
+  <div class="module-nav" id="module-nav"></div>
+</div>
+
+<footer>
+  <div class="container">
+    <p style="font-weight:700;margin-bottom:8px">Check out these Claude Code Superpowers:</p>
+    <p style="font-size:0.875rem;line-height:1.8">
+      <a href="https://claude-code-mastery.terminalvelocityai.tech">Claude Code Mastery</a> ·
+      <a href="https://claude-code-toolkit.terminalvelocityai.tech">Claude Code Toolkit</a> ·
+      <a href="https://claude-code-teaches.terminalvelocityai.tech">Claude Code Teaches IT Topics</a> ·
+      <a href="https://store.terminalvelocityai.tech/">Brighten — Four Superskills</a>
+    </p>
+    <p style="margin-top:16px">n8n Basics Bootcamp — built with <strong>Claude Code</strong> + <strong>NotebookLM</strong></p>
+    <p style="margin-top:8px">© 2026 <a href="https://terminalvelocityai.tech/">Terminal Velocity AI</a>. All rights reserved.</p>
+    <p style="margin-top:4px;font-size:0.85rem;color:var(--text3)">Built with love and Claude Code</p>
+  </div>
+</footer>
+
+<!-- D3 + Marked + Course JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+<script src="js/course.js"></script>
+<!-- PPTX_SCRIPTS_START -->
+<!-- PPTXjs deps for the in-browser slide viewer (vendored in js/vendor/pptxjs for
+     offline PWA support). NOTE: d3/nv.d3 are intentionally NOT loaded because
+     pptxjs bundles d3 v3, which would overwrite the d3 v7 used by the mind map.
+     Native PowerPoint charts won't render, but standard slides do. jQuery is
+     namespaced as $pptx to avoid leaking a global $. -->
+<script src="js/vendor/pptxjs/jquery.min.js"></script>
+<script src="js/vendor/pptxjs/jszip.min.js"></script>
+<script src="js/vendor/pptxjs/filereader.js"></script>
+<script src="js/vendor/pptxjs/pptxjs.js"></script>
+<script src="js/vendor/pptxjs/divs2slides.js"></script>
+<script>
+  // Hand jQuery to a private name AND release the global `$` it grabbed, so it stops
+  // clobbering course.js's own `$` querySelector helper (which initQuiz/initFlashcards
+  // rely on — otherwise every Quiz/Flashcards tab throws and shows "not available").
+  // noConflict() (without `true`) frees `$` but keeps window.jQuery, which PPTXjs needs
+  // at runtime (jQuery.getScript / jQuery().divs2slides).
+  window.$pptx = window.jQuery.noConflict();
+</script>
+<!-- PPTX_SCRIPTS_END -->
+<script>
+(async function() {
+  if (location.protocol === 'file:') {
+    const banner = document.createElement('div');
+    banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#dc2626;color:#fff;text-align:center;padding:10px 16px;font-size:0.875rem;font-weight:600';
+    banner.innerHTML = '⚠️ Content requires a local server — run: <code style="background:rgba(0,0,0,0.3);padding:2px 8px;border-radius:4px">python3 -m http.server 8080</code> then visit <a href="http://localhost:8080" style="color:#fde68a">localhost:8080</a>';
+    document.body.prepend(banner);
+  }
+
+  const params = new URLSearchParams(location.search);
+  const id = parseInt(params.get('id')) || 1;
+  const module = MODULES.find(m => m.id === id);
+  if (!module) { document.body.innerHTML = '<p style="padding:40px;color:var(--text2)">Module not found.</p>'; return; }
+
+  const base = module.dir + '/content/';
+
+  // Record study activity, last visited, check prereqs
+  recordActivity();
+  saveProgress('last_visited', id);
+  checkPrerequisites(id);
+
+  // Show Challenge tab for Stellar modules (ids 8-15)
+  if (CHALLENGES[id]) {
+    const challengeTab = document.getElementById('challenge-tab');
+    if (challengeTab) challengeTab.style.display = '';
+  }
+
+  // Set titles
+  document.title = `Module ${id}: ${module.title} — Automation Academy`;
+  document.getElementById('breadcrumb-title').textContent = module.title;
+  document.getElementById('module-title').textContent = `${module.icon} Module ${id}: ${module.title}`;
+  document.getElementById('module-subtitle').textContent = module.subtitle;
+
+  // Module nav
+  const prev = MODULES.find(m => m.id === id - 1);
+  const next = MODULES.find(m => m.id === id + 1);
+  const nav = document.getElementById('module-nav');
+  nav.innerHTML = `
+    ${prev ? `<a href="module.html?id=${prev.id}" class="module-nav-btn">
+      <span>←</span>
+      <div><div class="nav-sub">Previous</div><div class="nav-title">${prev.icon} ${prev.title}</div></div>
+    </a>` : '<div></div>'}
+    <a href="index.html" class="module-nav-btn" style="font-size:0.85rem">📋 All Modules</a>
+    ${next ? `<a href="module.html?id=${next.id}" class="module-nav-btn">
+      <div style="text-align:right"><div class="nav-sub">Next</div><div class="nav-title">${next.icon} ${next.title}</div></div>
+      <span>→</span>
+    </a>` : '<div></div>'}`;
+
+  // Check file existence helper
+  async function fileExists(path) {
+    try { const r = await fetch(path, {method:'HEAD'}); return r.ok; } catch { return false; }
+  }
+
+  // ===== PANEL LOADERS =====
+  const panelData = {
+    lesson: {
+      loaded: true, // load immediately
+      load: () => renderMarkdown(base + 'lesson.md', document.getElementById('lesson-content'))
+    },
+    video: {
+      load: () => {
+        const c = document.getElementById('video-container');
+        const path = base + 'explainer-video.mp4';
+        c.innerHTML = `
+          <video controls preload="metadata">
+            <source src="${path}" type="video/mp4">
+            Your browser does not support video.
+          </video>
+          <div class="media-info">
+            <h3>${module.icon} ${module.title} — Video Explainer</h3>
+            <p>AI-generated explainer video. Use fullscreen for best experience.</p>
+          </div>`;
+      }
+    },
+    audio: {
+      load: () => {
+        const c = document.getElementById('audio-container');
+        const path = base + 'audio-overview.mp3';
+        c.innerHTML = `
+          <div style="padding:32px">
+            <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
+              <div style="width:60px;height:60px;background:linear-gradient(135deg,var(--accent),var(--cyan));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0">🎙️</div>
+              <div>
+                <div style="font-weight:700;font-size:1rem">${module.title}</div>
+                <div style="color:var(--text2);font-size:0.875rem">Audio Overview — NotebookLM Podcast</div>
+              </div>
+            </div>
+            <audio controls style="width:100%">
+              <source src="${path}" type="audio/mpeg">
+              Your browser does not support audio.
+            </audio>
+            <p style="margin-top:16px;font-size:0.8rem;color:var(--text3)">Generated by NotebookLM's Audio Overview feature — two AI hosts discuss the key concepts.</p>
+          </div>`;
+      }
+    },
+    infographic: {
+      load: () => {
+        const c = document.getElementById('infographic-container');
+        const path = base + 'infographic.png';
+        const wrap = c.querySelector('.infographic-img-wrap');
+        wrap.innerHTML = `<img src="${path}" alt="Infographic for ${module.title}" onerror="this.parentElement.innerHTML='<p style=color:var(--text3);padding:40px>Infographic not available</p>'">`;
+        document.getElementById('infographic-download').href = path;
+        document.getElementById('infographic-download').download = `module-${id}-infographic.png`;
+        initInfographic(c);
+      }
+    },
+    studyguide: {
+      load: () => renderMarkdown(base + 'study-guide.md', document.getElementById('studyguide-content'))
+    },
+    quiz: {
+      load: async () => {
+        const c = document.getElementById('quiz-container');
+        try {
+          const r = await fetch(base + 'quiz.md');
+          if (!r.ok) throw new Error();
+          const text = await r.text();
+          const questions = parseQuiz(text);
+          if (!questions.length) throw new Error('No questions parsed');
+          c.innerHTML = '';
+          initQuiz(c, questions, id);
+        } catch(e) {
+          c.innerHTML = '<p style="color:var(--text3)">Quiz not available for this module.</p>';
+        }
+      }
+    },
+    flashcards: {
+      load: async () => {
+        const c = document.getElementById('flashcards-container');
+        try {
+          const r = await fetch(base + 'flashcards.md');
+          if (!r.ok) throw new Error();
+          const text = await r.text();
+          const cards = parseFlashcards(text);
+          if (!cards.length) throw new Error('No cards parsed');
+          c.innerHTML = '';
+          initSM2Flashcards(c, cards, id);
+        } catch(e) {
+          c.innerHTML = '<p style="color:var(--text3)">Flashcards not available for this module.</p>';
+        }
+      }
+    },
+    mindmap: {
+      load: () => initMindMap(document.getElementById('mindmap-container'), base + 'mind-map.json')
+    },
+    slides: {
+      rendered: false,
+      load: async () => {
+        const path = base + 'slides.pptx';
+        const downloadBtn = document.getElementById('slides-download');
+        const viewToggle = document.getElementById('slides-view-toggle');
+        const viewerWrap = document.getElementById('slides-viewer-wrap');
+        const viewer = document.getElementById('slides-viewer');
+        const status = document.getElementById('slides-viewer-status');
+        const exists = await fileExists(path);
+
+        if (!exists) {
+          downloadBtn.style.display = 'none';
+          if (viewToggle) viewToggle.style.display = 'none';
+          document.getElementById('slides-unavailable').style.display = 'block';
+          return;
+        }
+
+        downloadBtn.href = path;
+        downloadBtn.download = `module-${id}-slides.pptx`;
+        downloadBtn.style.display = 'inline-flex';
+        document.getElementById('slides-unavailable').style.display = 'none';
+
+        // Only offer the in-browser viewer if PPTXjs loaded successfully.
+        if (!viewToggle || !window.$pptx || typeof window.$pptx.fn.pptxToHtml !== 'function') return;
+        viewToggle.style.display = 'inline-flex';
+
+        viewToggle.onclick = () => {
+          // Toggle visibility on subsequent clicks; render only once.
+          if (panelData.slides.rendered) {
+            const showing = viewerWrap.style.display !== 'none';
+            viewerWrap.style.display = showing ? 'none' : 'block';
+            viewToggle.textContent = showing ? '👁 View Slides Here' : '🙈 Hide Slides';
+            return;
+          }
+          panelData.slides.rendered = true;
+          viewerWrap.style.display = 'block';
+          viewToggle.textContent = '🙈 Hide Slides';
+          status.textContent = 'Rendering slides…';
+
+          // PPTXjs renders slides at their native pixel width (a widescreen deck
+          // is ~1280px+), which overflows the container. Its built-in slidesScale
+          // only applies in slideshow mode, so we scale the rendered deck to fit
+          // the available width ourselves. CSS `zoom` scales the layout box too
+          // (unlike `transform`), so no manual height/margin math is needed.
+          const fitSlides = () => {
+            const wrap = viewer.querySelector('#all_slides_warpper');
+            const slide = viewer.querySelector('.slide');
+            if (!wrap || !slide) return;
+            const native = parseFloat(slide.style.width) || slide.offsetWidth;
+            if (!native) return;
+            const avail = viewer.clientWidth - 16; // account for viewer padding
+            wrap.style.zoom = Math.min(1, avail / native);
+            wrap.style.margin = '0 auto';
+            // PPTXjs sets a fixed inline height (numOfSlides × oneSlideHeight) that
+            // ignores our per-slide margins, so the wrapper ends up shorter than the
+            // real stacked content — which breaks the page scroll boundary (slides get
+            // "stuck"/unreachable). Force height:auto so the wrapper encloses every
+            // (zoomed, margined) slide and the page scrolls through all of them.
+            wrap.style.height = 'auto';
+            wrap.style.overflow = 'visible';
+          };
+          let resizeTimer;
+          window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(fitSlides, 150);
+          });
+
+          try {
+            window.$pptx('#slides-viewer').pptxToHtml({
+              pptxFileUrl: path,
+              slidesScale: '',          // scaled responsively via fitSlides() below
+              slideMode: false,         // continuous scroll, all slides stacked
+              keyBoardShortCut: false,
+              mediaProcess: true
+            });
+            // PPTXjs renders asynchronously and overwrites the wrapper's style
+            // attribute at the very end, so re-apply the fit on a short interval
+            // for a few seconds to ensure our zoom survives that final write.
+            let fitTicks = 0;
+            const check = setInterval(() => {
+              if (viewer.querySelector('.slide')) {
+                fitSlides();
+                status.textContent = '';
+              }
+              if (++fitTicks > 25) clearInterval(check); // ~5s of re-fitting
+            }, 200);
+            setTimeout(() => {
+              if (!viewer.querySelector('.slide')) {
+                status.textContent = 'Could not render the slides in-browser. Please download the deck instead.';
+              }
+            }, 15000);
+          } catch (e) {
+            status.textContent = 'Could not render the slides in-browser. Please download the deck instead.';
+          }
+        };
+      }
+    },
+    notes: {
+      load: () => initNotes(document.getElementById('notes-panel-content'), id)
+    },
+    challenge: {
+      load: () => initChallenge(document.getElementById('challenge-panel-content'), id)
+    }
+  };
+
+  // Load lesson immediately
+  panelData.lesson.load();
+  initTabs(panelData);
+  initKeyboardShortcuts();
+  registerSW();
+
+})();
+</script>
+</body>
+</html>

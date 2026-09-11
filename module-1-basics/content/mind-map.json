@@ -1,0 +1,137 @@
+{
+  "name": "n8n Basics",
+  "children": [
+    {
+      "name": "What is n8n?",
+      "children": [
+        {
+          "name": "Low-code workflow automation"
+        },
+        {
+          "name": "Self-hostable alternative to Zapier/Make"
+        },
+        {
+          "name": "Node-based visual graph building"
+        }
+      ]
+    },
+    {
+      "name": "Core Concepts",
+      "children": [
+        {
+          "name": "Workflow",
+          "children": [
+            {
+              "name": "Set of connected nodes"
+            },
+            {
+              "name": "Rules for data flow"
+            }
+          ]
+        },
+        {
+          "name": "Node Types",
+          "children": [
+            {
+              "name": "Trigger node (Starts workflow)"
+            },
+            {
+              "name": "Regular/Action node (Logic & tasks)"
+            }
+          ]
+        },
+        {
+          "name": "Data Flow",
+          "children": [
+            {
+              "name": "List of items"
+            },
+            {
+              "name": "JSON objects"
+            },
+            {
+              "name": "Left to right flow"
+            }
+          ]
+        },
+        {
+          "name": "Credentials (Encrypted connections)"
+        },
+        {
+          "name": "Execution (Workflow run history)"
+        }
+      ]
+    },
+    {
+      "name": "Trigger Examples",
+      "children": [
+        {
+          "name": "Webhook (HTTP request)"
+        },
+        {
+          "name": "Cron (Scheduled timer)"
+        },
+        {
+          "name": "Manual (Execute button)"
+        }
+      ]
+    },
+    {
+      "name": "Action Examples",
+      "children": [
+        {
+          "name": "Set (Data reshaping)"
+        },
+        {
+          "name": "IF (Conditional branching)"
+        },
+        {
+          "name": "HTTP Request (API calls)"
+        },
+        {
+          "name": "Service nodes (Slack/Email)"
+        }
+      ]
+    },
+    {
+      "name": "Common Gotchas",
+      "children": [
+        {
+          "name": "Test vs. Production URLs"
+        },
+        {
+          "name": "Active status for triggers"
+        },
+        {
+          "name": "Data is per-item"
+        },
+        {
+          "name": "Expressions ({{ $json }})"
+        },
+        {
+          "name": "Webhook ID requirements"
+        }
+      ]
+    },
+    {
+      "name": "Demo Workflow",
+      "children": [
+        {
+          "name": "Webhook (Receive POST)"
+        },
+        {
+          "name": "Normalize Data (Timestamping)"
+        },
+        {
+          "name": "Check Priority (Condition)"
+        },
+        {
+          "name": "Simulate Alert (Set node)"
+        },
+        {
+          "name": "No Operation (False branch)"
+        }
+      ]
+    }
+  ]
+}

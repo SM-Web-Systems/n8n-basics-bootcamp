@@ -1,0 +1,103 @@
+{
+  "name": "n8n Webhook Alert Demo Architecture",
+  "children": [
+    {
+      "name": "Workflow Data Flow",
+      "children": [
+        {
+          "name": "Webhook Trigger",
+          "children": [
+            {
+              "name": "Input: Raw Body"
+            },
+            {
+              "name": "Fields: name, message, priority"
+            }
+          ]
+        },
+        {
+          "name": "Normalize Data",
+          "children": [
+            {
+              "name": "Output: Flattened Data"
+            },
+            {
+              "name": "Added: receivedAt timestamp"
+            }
+          ]
+        },
+        {
+          "name": "Branching Logic (IF)",
+          "children": [
+            {
+              "name": "True: Simulate Slack Alert",
+              "children": [
+                {
+                  "name": "Added: alertText with Emoji"
+                }
+              ]
+            },
+            {
+              "name": "False: No Alert Needed",
+              "children": [
+                {
+                  "name": "Output: Unchanged data"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "n8n Component Overview",
+      "children": [
+        {
+          "name": "Editor UI",
+          "children": [
+            {
+              "name": "Client-side interface"
+            }
+          ]
+        },
+        {
+          "name": "n8n Server",
+          "children": [
+            {
+              "name": "Workflow storage"
+            },
+            {
+              "name": "Webhook reception"
+            },
+            {
+              "name": "Execution engine"
+            },
+            {
+              "name": "Persistence: runs without browser"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Workflow Definition",
+      "children": [
+        {
+          "name": "Webhook Node"
+        },
+        {
+          "name": "Set Node (Normalization)"
+        },
+        {
+          "name": "IF Node (Priority Check)"
+        },
+        {
+          "name": "Slack Node (Simulation)"
+        },
+        {
+          "name": "No-op Node"
+        }
+      ]
+    }
+  ]
+}

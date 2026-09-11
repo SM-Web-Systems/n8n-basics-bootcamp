@@ -1,0 +1,118 @@
+{
+  "name": "n8n Setup Guide",
+  "children": [
+    {
+      "name": "Initial Configuration",
+      "children": [
+        {
+          "name": "Set N8N_BASIC_AUTH_PASSWORD in .env"
+        },
+        {
+          "name": "Adjust GENERIC_TIMEZONE"
+        }
+      ]
+    },
+    {
+      "name": "Start Services",
+      "children": [
+        {
+          "name": "Run docker compose up -d"
+        },
+        {
+          "name": "Verify n8n-poc container health"
+        },
+        {
+          "name": "Check logs for errors"
+        }
+      ]
+    },
+    {
+      "name": "Editor Access",
+      "children": [
+        {
+          "name": "Visit http://localhost:5678"
+        },
+        {
+          "name": "Basic auth login"
+        },
+        {
+          "name": "Complete owner account setup"
+        }
+      ]
+    },
+    {
+      "name": "Workflow Management",
+      "children": [
+        {
+          "name": "Import Demo",
+          "children": [
+            {
+              "name": "Import from File"
+            },
+            {
+              "name": "webhook-alert-demo.json"
+            }
+          ]
+        },
+        {
+          "name": "Activation",
+          "children": [
+            {
+              "name": "Toggle Active to ON"
+            },
+            {
+              "name": "Identify Production URL"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Testing and Debugging",
+      "children": [
+        {
+          "name": "Fire webhook via terminal (curl)"
+        },
+        {
+          "name": "Review Executions tab"
+        },
+        {
+          "name": "Inspect data at each node"
+        }
+      ]
+    },
+    {
+      "name": "Advanced Customization",
+      "children": [
+        {
+          "name": "Real Alerts",
+          "children": [
+            {
+              "name": "Replace Simulate node"
+            },
+            {
+              "name": "Add Slack or Email node"
+            },
+            {
+              "name": "Configure credentials"
+            },
+            {
+              "name": "Map dynamic data fields"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tear Down",
+      "children": [
+        {
+          "name": "Stop with docker compose down"
+        },
+        {
+          "name": "Optional: wipe data with -v flag"
+        }
+      ]
+    }
+  ]
+}
